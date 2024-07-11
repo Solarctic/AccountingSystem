@@ -27,7 +27,7 @@ class connectionFunction extends javax.swing.JFrame {
         try {
             //Class.forName("com.mysql.cj.jdbc.Drive");
             //change localhost schema to import table * (for admin and root users)
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lab_3", username, password);
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/", username, password);
             JOptionPane.showMessageDialog(null, "SQL Connected Successfully");
             //System.out.println("Connection successful");
             new frmMain(con).setVisible(true);
