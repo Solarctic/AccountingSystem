@@ -12,15 +12,15 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema project
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `project` DEFAULT CHARACTER SET utf8 ;
+USE `project` ;
 
 -- -----------------------------------------------------
 -- Table `mydb`.`publisher`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`publisher` (
+CREATE TABLE IF NOT EXISTS `project`.`publisher` (
   `publisher_id` INT NOT NULL,
   `publisher_name` VARCHAR(45) NULL,
   PRIMARY KEY (`publisher_id`))
@@ -30,7 +30,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`game`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`game` (
+CREATE TABLE IF NOT EXISTS `project`.`game` (
   `game_id` INT NOT NULL,
   `game_title` VARCHAR(45) NULL,
   `publisher_id` INT NOT NULL,
@@ -47,7 +47,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`sales`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`sales` (
+CREATE TABLE IF NOT EXISTS `project`.`sales` (
   `game_id` INT NOT NULL,
   `publisher_id` INT NOT NULL,
   `sales` INT NULL,
@@ -69,7 +69,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`price`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`price` (
+CREATE TABLE IF NOT EXISTS `project`.`price` (
   `game_id` INT NOT NULL,
   `region` VARCHAR(45) NOT NULL,
   `price` DOUBLE NULL,
@@ -85,7 +85,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`game_population`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`game_population` (
+CREATE TABLE IF NOT EXISTS `project`.`game_population` (
   `game_id` INT NOT NULL,
   `player_count` INT NULL,
   `region` VARCHAR(45) NOT NULL,
@@ -107,7 +107,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`game_genre`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`game_genre` (
+CREATE TABLE IF NOT EXISTS `project`.`game_genre` (
   `game_id` INT NOT NULL,
   `genre` VARCHAR(45) NULL,
   PRIMARY KEY (`game_id`))
@@ -117,7 +117,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`game_platform`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`game_platform` (
+CREATE TABLE IF NOT EXISTS `project`.`game_platform` (
   `game_id` INT NOT NULL,
   `platform` VARCHAR(45) NULL,
   PRIMARY KEY (`game_id`))
@@ -127,7 +127,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`game_platform_has_game`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`game_platform_has_game` (
+CREATE TABLE IF NOT EXISTS `project`.`game_platform_has_game` (
   `game_platform_game_id` INT NOT NULL,
   `game_publisher_id` INT NOT NULL,
   `game_game_id` INT NOT NULL,
@@ -150,7 +150,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`game_genre_has_game`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`game_genre_has_game` (
+CREATE TABLE IF NOT EXISTS `project`.`game_genre_has_game` (
   `game_game_id` INT NOT NULL,
   `game_genre_game_id` INT NOT NULL,
   `game_publisher_id` INT NOT NULL,
