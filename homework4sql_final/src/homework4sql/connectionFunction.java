@@ -27,7 +27,7 @@ class connectionFunction extends javax.swing.JFrame {
         try {
             //Class.forName("com.mysql.cj.jdbc.Drive");
             //change localhost schema to import table * (for admin and root users)
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/", username, password);
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lab_3", username, password);
             JOptionPane.showMessageDialog(null, "SQL Connected Successfully");
             //System.out.println("Connection successful");
             new frmMain(con).setVisible(true);
@@ -200,7 +200,7 @@ class connectionFunction extends javax.swing.JFrame {
             String contact_id = tableModel.getValueAt(row, 7).toString();
 
             //String query = "UPDATE Books SET availability = ? WHERE author = ? AND bookname = ?";
-            new frmGame_genre(con, id, first_Name, last_Name, address, city, country, cmbBox, contact_id, false, model).setVisible(true);
+            new frmCustomers(con, id, first_Name, last_Name, address, city, country, cmbBox, contact_id, false, model).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Invalid Table Value");
         }
@@ -513,7 +513,7 @@ class connectionFunction extends javax.swing.JFrame {
 
     public void newCustomer(Connection con, JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        new frmGame_genre(con, null, null, null, null, null, null, "Phone", null, true, model).setVisible(true);
+        new frmCustomers(con, null, null, null, null, null, null, "Phone", null, true, model).setVisible(true);
     }
 
     public void searchCustomer(Connection con, JTable table, String selected, String searchValue, boolean chkBox, boolean bContact) {
