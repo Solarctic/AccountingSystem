@@ -59,6 +59,9 @@ public class frmGameDatabase extends frmSuperList {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblGameDatabase = new javax.swing.JTable();
+        btnAddGame = new javax.swing.JButton();
+        btnUpdateGame = new javax.swing.JButton();
+        btnDeleteGame = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,25 +75,54 @@ public class frmGameDatabase extends frmSuperList {
         ));
         jScrollPane1.setViewportView(tblGameDatabase);
 
+        btnAddGame.setText("Add Game");
+        btnAddGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddGameActionPerformed(evt);
+            }
+        });
+
+        btnUpdateGame.setText("Update Game");
+
+        btnDeleteGame.setText("Delete Game");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(187, 187, 187)
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnUpdateGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAddGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeleteGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(222, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(btnAddGame)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUpdateGame)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDeleteGame)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddGameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,6 +159,9 @@ public class frmGameDatabase extends frmSuperList {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddGame;
+    private javax.swing.JButton btnDeleteGame;
+    private javax.swing.JButton btnUpdateGame;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblGameDatabase;
     // End of variables declaration//GEN-END:variables

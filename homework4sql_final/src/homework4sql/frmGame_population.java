@@ -17,18 +17,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author SOL
  */
-public class frmCustomers extends frmSuperForm{
+public class frmGame_population extends frmSuperForm{
 
     /**
-     * Creates new form frmCustomers
+     * Creates new form frmGame_genre
      */
     boolean checkNew;
     String editContact_id;
 
-    public frmCustomers(Connection sqlpass, String id, String firstname, String lastname,
+    public frmGame_population(Connection sqlpass, String id, String firstname, String lastname,
         String address, String city, String country, String contactType, String contact_id, boolean bNew, DefaultTableModel tbl) {
         super(sqlpass);
-        
+        initComponents();
         boolean check = cnf.isDbConnected(con);
         //System.out.println(check);
 
@@ -37,22 +37,21 @@ public class frmCustomers extends frmSuperForm{
             return;
         }
         
-        setDefaultTable(tbl);
-        initComponents();
-
-        checkNew = bNew;
-
-        if (!bNew) {
-            txtCustomer_id.setText(id);
-        }
-
-        txtCustomer_first_name.setText(firstname);
-        txtCustomer_last_name.setText(lastname);
-        txtCustomer_address.setText(address);
-        txtCustomer_city.setText(city);
-        txtCustomer_country.setText(country);
-        cmbBoxContact.setSelectedItem(contactType);
-        editContact_id = contact_id;
+//        setDefaultTable(tbl);
+//
+//        checkNew = bNew;
+//
+//        if (!bNew) {
+//            txtCustomer_id.setText(id);
+//        }
+//
+//        txtCustomer_first_name.setText(firstname);
+//        txtCustomer_last_name.setText(lastname);
+//        txtCustomer_address.setText(address);
+//        txtCustomer_city.setText(city);
+//        txtCustomer_country.setText(country);
+//        cmbBoxContact.setSelectedItem(contactType);
+//        editContact_id = contact_id;
     }
 
     @Override
@@ -89,22 +88,24 @@ public class frmCustomers extends frmSuperForm{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblPlatform = new javax.swing.JLabel();
-        txtPlatform = new javax.swing.JTextField();
+        lblPlayer_count = new javax.swing.JLabel();
+        txtPlayer_count = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         txtGame_id = new javax.swing.JTextField();
         lblGameID = new javax.swing.JLabel();
+        lblRegion = new javax.swing.JLabel();
+        txtRegion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Database - Customer Table");
         setResizable(false);
 
-        lblPlatform.setText("Platform:");
+        lblPlayer_count.setText("Player Count:");
 
-        txtPlatform.addActionListener(new java.awt.event.ActionListener() {
+        txtPlayer_count.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPlatformActionPerformed(evt);
+                txtPlayer_countActionPerformed(evt);
             }
         });
 
@@ -131,6 +132,14 @@ public class frmCustomers extends frmSuperForm{
 
         lblGameID.setText("Game ID:");
 
+        lblRegion.setText("Region:");
+
+        txtRegion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRegionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,31 +148,39 @@ public class frmCustomers extends frmSuperForm{
                 .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(txtRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(57, 57, 57)
                         .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lblGameID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPlatform, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblPlayer_count, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtGame_id, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPlatform, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtPlayer_count, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtGame_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblGameID))
-                .addGap(38, 38, 38)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPlatform)
-                    .addComponent(txtPlatform, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
+                    .addComponent(lblPlayer_count)
+                    .addComponent(txtPlayer_count, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRegion)
+                    .addComponent(txtRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
                     .addComponent(btnExit))
@@ -178,18 +195,18 @@ public class frmCustomers extends frmSuperForm{
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPlatformActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlatformActionPerformed
+    private void txtPlayer_countActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlayer_countActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPlatformActionPerformed
+    }//GEN-LAST:event_txtPlayer_countActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
-        if(getCnf().saveCustomer(con, checkNew, txtCustomer_id, txtCustomer_first_name, txtCustomer_last_name, txtCustomer_city, txtCustomer_address, txtCustomer_country, 
-                cmbBoxContact, editContact_id ))
-        {
-            refreshTable();
-            this.dispose();
-        }
+//        if(getCnf().saveCustomer(con, checkNew, txtCustomer_id, txtCustomer_first_name, txtCustomer_last_name, txtCustomer_city, txtCustomer_address, txtCustomer_country, 
+//                cmbBoxContact, editContact_id ))
+//        {
+//            refreshTable();
+//            this.dispose();
+//        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
 
@@ -203,6 +220,10 @@ public class frmCustomers extends frmSuperForm{
     private void txtGame_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGame_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtGame_idActionPerformed
+
+    private void txtRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRegionActionPerformed
 
     /**
      * @param args the command line arguments *
@@ -222,14 +243,22 @@ public class frmCustomers extends frmSuperForm{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmCustomers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGame_genre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmCustomers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGame_genre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmCustomers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGame_genre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmCustomers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGame_genre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -250,9 +279,11 @@ public class frmCustomers extends frmSuperForm{
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel lblGameID;
-    private javax.swing.JLabel lblPlatform;
+    private javax.swing.JLabel lblPlayer_count;
+    private javax.swing.JLabel lblRegion;
     private javax.swing.JTextField txtGame_id;
-    private javax.swing.JTextField txtPlatform;
+    private javax.swing.JTextField txtPlayer_count;
+    private javax.swing.JTextField txtRegion;
     // End of variables declaration//GEN-END:variables
 
 }

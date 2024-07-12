@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author SOL
  */
-public class frmCustomers extends frmSuperForm{
+public class frmPrice extends frmSuperForm{
 
     /**
      * Creates new form frmCustomers
@@ -25,11 +25,12 @@ public class frmCustomers extends frmSuperForm{
     boolean checkNew;
     String editContact_id;
 
-    public frmCustomers(Connection sqlpass, String id, String firstname, String lastname,
+    public frmPrice(Connection sqlpass, String id, String firstname, String lastname,
         String address, String city, String country, String contactType, String contact_id, boolean bNew, DefaultTableModel tbl) {
         super(sqlpass);
         
         boolean check = cnf.isDbConnected(con);
+        initComponents();
         //System.out.println(check);
 
         if (!check) {
@@ -38,21 +39,20 @@ public class frmCustomers extends frmSuperForm{
         }
         
         setDefaultTable(tbl);
-        initComponents();
 
         checkNew = bNew;
-
-        if (!bNew) {
-            txtCustomer_id.setText(id);
-        }
-
-        txtCustomer_first_name.setText(firstname);
-        txtCustomer_last_name.setText(lastname);
-        txtCustomer_address.setText(address);
-        txtCustomer_city.setText(city);
-        txtCustomer_country.setText(country);
-        cmbBoxContact.setSelectedItem(contactType);
-        editContact_id = contact_id;
+//
+//        if (!bNew) {
+//            txtCustomer_id.setText(id);
+//        }
+//
+//        txtCustomer_first_name.setText(firstname);
+//        txtCustomer_last_name.setText(lastname);
+//        txtCustomer_address.setText(address);
+//        txtCustomer_city.setText(city);
+//        txtCustomer_country.setText(country);
+//        cmbBoxContact.setSelectedItem(contactType);
+//        editContact_id = contact_id;
     }
 
     @Override
@@ -203,12 +203,12 @@ public class frmCustomers extends frmSuperForm{
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
-        if(getCnf().saveCustomer(con, checkNew, txtCustomer_id, txtCustomer_first_name, txtCustomer_last_name, txtCustomer_city, txtCustomer_address, txtCustomer_country, 
-                cmbBoxContact, editContact_id ))
-        {
-            refreshTable();
-            this.dispose();
-        }
+//        if(getCnf().saveCustomer(con, checkNew, txtCustomer_id, txtCustomer_first_name, txtCustomer_last_name, txtCustomer_city, txtCustomer_address, txtCustomer_country, 
+//                cmbBoxContact, editContact_id ))
+//        {
+//            refreshTable();
+//            this.dispose();
+//        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
 

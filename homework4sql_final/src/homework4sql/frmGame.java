@@ -17,42 +17,42 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author SOL
  */
-public class frmCustomers extends frmSuperForm{
+public class frmGame extends frmSuperForm{
 
     /**
-     * Creates new form frmCustomers
+     * Creates new form frmGame_genre
      */
     boolean checkNew;
     String editContact_id;
 
-    public frmCustomers(Connection sqlpass, String id, String firstname, String lastname,
+    public frmGame(Connection sqlpass, String id, String firstname, String lastname,
         String address, String city, String country, String contactType, String contact_id, boolean bNew, DefaultTableModel tbl) {
         super(sqlpass);
         
         boolean check = cnf.isDbConnected(con);
         //System.out.println(check);
 
-        if (!check) {
-            JOptionPane.showMessageDialog(null, "SQL Connection Failed or Interrupted.");
-            return;
-        }
-        
-        setDefaultTable(tbl);
-        initComponents();
-
-        checkNew = bNew;
-
-        if (!bNew) {
-            txtCustomer_id.setText(id);
-        }
-
-        txtCustomer_first_name.setText(firstname);
-        txtCustomer_last_name.setText(lastname);
-        txtCustomer_address.setText(address);
-        txtCustomer_city.setText(city);
-        txtCustomer_country.setText(country);
-        cmbBoxContact.setSelectedItem(contactType);
-        editContact_id = contact_id;
+//        if (!check) {
+//            JOptionPane.showMessageDialog(null, "SQL Connection Failed or Interrupted.");
+//            return;
+//        }
+//        
+//        setDefaultTable(tbl);
+//        initComponents();
+//
+//        checkNew = bNew;
+//
+//        if (!bNew) {
+//            txtCustomer_id.setText(id);
+//        }
+//
+//        txtCustomer_first_name.setText(firstname);
+//        txtCustomer_last_name.setText(lastname);
+//        txtCustomer_address.setText(address);
+//        txtCustomer_city.setText(city);
+//        txtCustomer_country.setText(country);
+//        cmbBoxContact.setSelectedItem(contactType);
+//        editContact_id = contact_id;
     }
 
     @Override
@@ -232,12 +232,12 @@ public class frmCustomers extends frmSuperForm{
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
-        if(getCnf().saveCustomer(con, checkNew, txtCustomer_id, txtCustomer_first_name, txtCustomer_last_name, txtCustomer_city, txtCustomer_address, txtCustomer_country, 
-                cmbBoxContact, editContact_id ))
-        {
-            refreshTable();
-            this.dispose();
-        }
+//        if(getCnf().saveCustomer(con, checkNew, txtCustomer_id, txtCustomer_first_name, txtCustomer_last_name, txtCustomer_city, txtCustomer_address, txtCustomer_country, 
+//                cmbBoxContact, editContact_id ))
+//        {
+//            refreshTable();
+//            this.dispose();
+//        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
 
@@ -270,14 +270,22 @@ public class frmCustomers extends frmSuperForm{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmCustomers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGame_genre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmCustomers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGame_genre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmCustomers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGame_genre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmCustomers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmGame_genre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
