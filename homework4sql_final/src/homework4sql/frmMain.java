@@ -21,6 +21,7 @@ public class frmMain extends javax.swing.JFrame {
     
     Connection con = null;
     connectionFunction cnf = new connectionFunction();
+    connectionFunctionGame cng = new connectionFunctionGame();
 
     public frmMain(Connection sqlcon) {
 
@@ -42,6 +43,7 @@ public class frmMain extends javax.swing.JFrame {
 
         btnCustomers = new javax.swing.JButton();
         btnContacts = new javax.swing.JButton();
+        btnGamedatabase = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Database Menu");
@@ -60,6 +62,13 @@ public class frmMain extends javax.swing.JFrame {
             }
         });
 
+        btnGamedatabase.setText("Game Database");
+        btnGamedatabase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGamedatabaseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -67,18 +76,21 @@ public class frmMain extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(124, 124, 124)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGamedatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnContacts, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(btnCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnContacts, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnGamedatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -104,6 +116,16 @@ public class frmMain extends javax.swing.JFrame {
         }
         new frmContactList(con).setVisible(true);
     }//GEN-LAST:event_btnContactsActionPerformed
+
+    private void btnGamedatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGamedatabaseActionPerformed
+        // TODO add your handling code here:
+        boolean check = cng.isDbConnected(con);
+        if (!check) {
+            JOptionPane.showMessageDialog(null, "SQL Connection Failed or Interrupted.");
+            return;
+        }
+        new frmGameDatabase(con).setVisible(true);
+    }//GEN-LAST:event_btnGamedatabaseActionPerformed
 
 //    //method i found that i modified to check connection just in case the object doesnt pass
 //    public boolean isDbConnected(Connection con) {
@@ -154,5 +176,6 @@ public class frmMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContacts;
     private javax.swing.JButton btnCustomers;
+    private javax.swing.JButton btnGamedatabase;
     // End of variables declaration//GEN-END:variables
 }

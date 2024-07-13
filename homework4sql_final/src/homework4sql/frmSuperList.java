@@ -16,16 +16,19 @@ import javax.swing.JTable;
 public class frmSuperList extends javax.swing.JFrame {
     protected Connection con;
     protected connectionFunction cnf;
+    protected connectionFunctionGame cng;
     protected JTable table;
 
     public frmSuperList(Connection sqlpass) {
         this.con = sqlpass;
         this.cnf = new connectionFunction();
-
+        this.cng = new connectionFunctionGame();
+        this.table = new JTable();
         //initComponents(); // Assuming this method initializes UI components
         boolean check = cnf.isDbConnected(con);
-        System.out.println(check);
-        if (!check) {
+        boolean checkg = cng.isDbConnected(con);
+        System.out.println(checkg);
+        if (!checkg) {
             JOptionPane.showMessageDialog(null, "SQL Connection Failed or Interrupted.");
             return;
         }
@@ -41,6 +44,11 @@ public class frmSuperList extends javax.swing.JFrame {
         this.cnf = cnf;
     }
     
+    public void setCng(connectionFunctionGame cng)
+    {
+        this.cng = cng;
+    }
+    
     public void setTable(JTable table)
     {
         this.table = table;
@@ -54,6 +62,11 @@ public class frmSuperList extends javax.swing.JFrame {
     public connectionFunction getCnf()
     {
         return cnf;
+    }
+    
+    public connectionFunctionGame getCng()
+    {
+        return cng;
     }
     
     public JTable getTable()

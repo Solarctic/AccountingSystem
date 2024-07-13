@@ -25,9 +25,11 @@ public class frmGame extends frmSuperForm{
     boolean checkNew;
     String editContact_id;
 
-    public frmGame(Connection sqlpass, String id, String firstname, String lastname,
-        String address, String city, String country, String contactType, String contact_id, boolean bNew, DefaultTableModel tbl) {
+    public frmGame(Connection sqlpass, String id, String game, String publisher_id,
+        String release_date, boolean bNew, DefaultTableModel tbl) {
         super(sqlpass);
+        
+        initComponents();
         
         boolean check = cnf.isDbConnected(con);
         //System.out.println(check);
@@ -57,7 +59,7 @@ public class frmGame extends frmSuperForm{
 
     @Override
     protected void loadData() {
-        getCnf().getDefaultContact(getCon(), getDefaultTable()); // Load contact data into tblCostomers
+        getCng().getDefaultGame(getCon(), getDefaultTable()); // This function is for SQL, change it
     }
 
     @Override
@@ -65,7 +67,7 @@ public class frmGame extends frmSuperForm{
     {
         DefaultTableModel model = (DefaultTableModel) getDefaultTable();
         model.setRowCount(0);
-        getCnf().getDefaultCustomer(getCon(), getDefaultTable());
+        getCng().getDefaultGameDatabase(getCon(), getDefaultTable()); // This function is for SQL, change it
     }
     //see frmMain for details
 //    public boolean isDbConnected(Connection con) {
@@ -232,12 +234,12 @@ public class frmGame extends frmSuperForm{
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
-//        if(getCnf().saveCustomer(con, checkNew, txtCustomer_id, txtCustomer_first_name, txtCustomer_last_name, txtCustomer_city, txtCustomer_address, txtCustomer_country, 
-//                cmbBoxContact, editContact_id ))
-//        {
-//            refreshTable();
-//            this.dispose();
-//        }
+        if(getCng().saveGame(con, checkNew, txtTitle, txtPublisher_id, txtRelease_date))
+            //Connection sqlpass, String id, String game, String publisher_id, String release_date, boolean bNew, DefaultTableModel tbl
+        {
+            refreshTable();
+            this.dispose();
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
 

@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -117,7 +117,7 @@ class connectionFunctionGame extends javax.swing.JFrame {
         return false;
     }
 
-    public void editContact(Connection con, javax.swing.JTable tblContacts) {
+    public void editGame(Connection con, javax.swing.JTable tblContacts) {
         // TODO add your handling code here:
         TableModel tableModel = tblContacts.getModel();
         DefaultTableModel model = (DefaultTableModel) tblContacts.getModel();
@@ -130,8 +130,10 @@ class connectionFunctionGame extends javax.swing.JFrame {
             //System.out.println("row ID: " + row);
 
             String id = tableModel.getValueAt(row, 0).toString();
-            String contact_type = tableModel.getValueAt(row, 1).toString();
-            new frmContact(con, id, contact_type, false, false, null, model).setVisible(true);
+            String title = tableModel.getValueAt(row, 1).toString();
+            String publisher = tableModel.getValueAt(row, 2).toString();
+            String releaseDate = tableModel.getValueAt(row, 3).toString();
+            new frmGame(con, id, title, publisher, releaseDate, false, model).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Invalid Table Value");
         }
@@ -206,12 +208,12 @@ class connectionFunctionGame extends javax.swing.JFrame {
         }
     }
 
-    public boolean deleteCustomer(Connection con, javax.swing.JTable tblCustomers) {
+    public boolean deleteGame(Connection con, javax.swing.JTable tblGames) {
         // TODO add your handling code here:
 
-        TableModel tableModel = tblCustomers.getModel();
-        DefaultTableModel model = (DefaultTableModel) tblCustomers.getModel();
-        int row = tblCustomers.getSelectedRow();
+        TableModel tableModel = tblGames.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblGames.getModel();
+        int row = tblGames.getSelectedRow();
 
         if (model.getRowCount() == -1) {
             JOptionPane.showMessageDialog(null, "Cannot delete empty table!");
@@ -238,11 +240,11 @@ class connectionFunctionGame extends javax.swing.JFrame {
                 return false;
             }
 
-            String customerId = (String) tableModel.getValueAt(row, 0);
+            String gameID = (String) tableModel.getValueAt(row, 0);
             try {
 
                 PreparedStatement stmt = con.prepareStatement(sql);
-                stmt.setInt(1, Integer.parseInt(customerId));
+                stmt.setInt(1, Integer.parseInt(gameID));
                 stmt.executeUpdate();
                 stmt.close();
 
@@ -256,7 +258,29 @@ class connectionFunctionGame extends javax.swing.JFrame {
 
     // End of Customer 
     // Start of Contact
-    public void getDefaultContact(Connection con, DefaultTableModel tbl_c) {
+    public void getDefaultGame(Connection con, DefaultTableModel tbl_c) { // Change this SQL function
+
+        try {
+            Statement stmt = con.createStatement();
+            //change name of schema for your datbase,
+            ResultSet rs = stmt.executeQuery("SELECT * FROM lab_3.contact");
+
+            while (rs.next()) {
+                //fetch data from sql datatable
+                String id = rs.getString("contact_id");
+                String contact = rs.getString("contact_type");
+                //add to table
+                tbl_c.addRow(new Object[]{id, contact});
+            }
+            //close statement on completion
+            stmt.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: cannot retrieve the data table");
+            return;
+        }
+    }
+    
+    public void getDefaultPrice(Connection con, DefaultTableModel tbl_c) { // Change this SQL function
 
         try {
             Statement stmt = con.createStatement();
@@ -347,7 +371,47 @@ class connectionFunctionGame extends javax.swing.JFrame {
 
     // End of Contact
     // Start of Customer
-    public void getDefaultCustomer(Connection con, DefaultTableModel tbl_c) {
+    public void getDefaultGameDatabase(Connection con, DefaultTableModel tbl_c) { // Change this SQL function
+        try {
+            Statement stmt = con.createStatement();
+
+//            ResultSet rs = stmt.executeQuery("SELECT c.*, co.contact_type "
+//                    + "FROM lab_3.customer c "
+//                    + "LEFT JOIN lab_3.customercontact cc ON c.customer_id = cc.customer_id "
+//                    + "LEFT JOIN lab_3.contact co ON cc.contact_id = co.contact_id");
+            ResultSet rs = stmt.executeQuery("SELECT c.*, co.contact_type, cc.contact_id "
+                    + "FROM lab_3.customer c "
+                    + "LEFT JOIN lab_3.customercontact cc ON c.customer_id = cc.customer_id "
+                    + "LEFT JOIN lab_3.contact co ON cc.contact_id = co.contact_id");
+
+//            SELECT c.*, co.contact_type, cc.contact_id
+            //FROM lab_3.customer c
+            //LEFT JOIN lab_3.customercontact cc ON c.customer_id = cc.customer_id
+            //LEFT JOIN lab_3.contact co ON cc.contact_id = co.contact_id
+            //ResultSet rs = stmt.executeQuery("SELECT * FROM lab_3.customer");
+            while (rs.next()) {
+                //fetch data from sql datatable
+                String id = rs.getString("customer_id");
+                String first_Name = rs.getString("customer_first_name");
+                String last_Name = rs.getString("customer_last_name");
+                String address = rs.getString("customer_address");
+                String city = rs.getString("customer_city");
+                String country = rs.getString("customer_country");
+                String contact = rs.getString("contact_type");
+                String contact_id = rs.getString("contact_id");
+                //add to table
+                tbl_c.addRow(new Object[]{id, first_Name, last_Name, address, city, country, contact, contact_id});
+
+            }
+            //close statement on completion
+            stmt.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: cannot retrieve the data table");
+            return;
+        }
+    }
+    
+    public void getDefaultPriceDatabase(Connection con, DefaultTableModel tbl_c) { // Change this SQL function
         try {
             Statement stmt = con.createStatement();
 
@@ -387,32 +451,20 @@ class connectionFunctionGame extends javax.swing.JFrame {
         }
     }
 
-    public boolean saveCustomer(Connection con, boolean bNew,
-            javax.swing.JTextField txtCustomer_id, javax.swing.JTextField txtCustomer_first_name,
-            javax.swing.JTextField txtCustomer_last_name, javax.swing.JTextField txtCustomer_city,
-            javax.swing.JTextField txtCustomer_address, javax.swing.JTextField txtCustomer_country,
-            javax.swing.JComboBox cmbBoxContact, String contact_id) {
+    public boolean saveGame(Connection con, boolean bNew,
+            javax.swing.JTextField txtTitle, javax.swing.JTextField txtPublisher_id,
+            javax.swing.JTextField txtRelease_date) {
         // TODO add your handling code here:
         //save the data to the table so add the data to the table
 
-        String id = txtCustomer_id.getText();
-        String firstname = txtCustomer_first_name.getText();
-        String lastname = txtCustomer_last_name.getText();
-        String city = txtCustomer_city.getText();
-        String address = txtCustomer_address.getText();
-        String country = txtCustomer_country.getText();
-        String contact_type = cmbBoxContact.getSelectedItem().toString();
+        String title = txtTitle.getText();
+        String publisher = txtPublisher_id.getText();
+        String releaseDate = txtRelease_date.getText();
 
         String sql_query;
-        String sql_contact;
+        String sql_contact; // Change every Contact SQL to Game SQL
         String sql_customercontact;
 
-//         if (bNew) {
-//            sql_query = "INSERT INTO contact(contact_type) "
-//                    + "VALUES (?)";
-//        } else {
-//            sql_query = "UPDATE contact " + "SET contact_type = ? " + "WHERE contact_id = ?";
-//        }
         if (bNew) {
             sql_query = "INSERT INTO customer(customer_first_name, customer_last_name, customer_city, customer_address, customer_country) "
                     + "VALUES (?, ?, ?, ?, ?)";
@@ -427,20 +479,16 @@ class connectionFunctionGame extends javax.swing.JFrame {
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql_query);
-            PreparedStatement stmt_contact = con.prepareStatement(sql_contact);
+            PreparedStatement stmt_game = con.prepareStatement(sql_contact);
 
             //change this or smthing
             if (bNew) {
                 //stmt.setInt(1, new_id);
-                stmt.setString(1, firstname);
-                stmt.setString(2, lastname);
-                stmt.setString(3, city);
-                stmt.setString(4, address);
-                stmt.setString(5, country);
+                stmt.setString(1, title);
+                stmt.setString(2, publisher);
+                stmt.setString(3, releaseDate);
 
-                stmt_contact.setString(1, contact_type);
-
-                stmt_contact.executeUpdate();
+                stmt_game.executeUpdate();
                 //System.out.println(rowsAffected + " row(s) affected");
                 int rowsAffected = stmt.executeUpdate();
 
@@ -468,26 +516,111 @@ class connectionFunctionGame extends javax.swing.JFrame {
 
                 //System.out.println(rowsAffected + " row(s) affected");
                 ccstmt.close();
-                stmt_contact.close();
+                stmt_game.close();
                 stmt.close();
 
             } else {
 
-                stmt.setString(1, firstname);
-                stmt.setString(2, lastname);
-                stmt.setString(3, city);
-                stmt.setString(4, address);
-                stmt.setString(5, country);
-                stmt.setInt(6, Integer.parseInt(id));
-
-                stmt_contact.setString(1, contact_type);
-                stmt_contact.setInt(2, Integer.parseInt(contact_id));
+                stmt.setString(1, title);
+                stmt.setString(2, publisher);
+                stmt.setString(3, releaseDate);
 
                 int rowsAffected = stmt.executeUpdate();
-                stmt_contact.executeUpdate();
+                stmt_game.executeUpdate();
                 //System.out.println(rowsAffected + " row(s) affected");
 
-                stmt_contact.close();
+                stmt_game.close();
+                stmt.close(); // Close the statement
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // Print the stack trace for debugging
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage()); // Show error message
+            return false;
+        }
+        //frmCustomerList.getCustomer(con);
+
+        this.dispose();
+        return true;
+    }
+    
+    public boolean savePrice(Connection con, boolean bNew,
+            javax.swing.JTextField txtRegion, javax.swing.JTextField txtPrice) {
+        // TODO add your handling code here:
+        //save the data to the table so add the data to the table
+
+        String region = txtRegion.getText();
+        String price = txtPrice.getText();
+
+        String sql_query;
+        String sql_contact; // Change every Contact SQL to Game SQL
+        String sql_customercontact;
+
+        if (bNew) {
+            sql_query = "INSERT INTO customer(customer_first_name, customer_last_name, customer_city, customer_address, customer_country) "
+                    + "VALUES (?, ?, ?, ?, ?)";
+
+            sql_contact = "INSERT INTO contact(contact_type) " + "VALUES (?)";
+        } else {
+            sql_query = "UPDATE customer " + "SET customer_first_name = ?, " + "    customer_last_name = ?, "
+                    + "    customer_city = ?, " + "    customer_address = ?, " + "    customer_country = ? " + "WHERE customer_id = ?";
+
+            sql_contact = "UPDATE contact " + "SET contact_type = ? " + "WHERE contact_id = ?";
+        }
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql_query);
+            PreparedStatement stmt_game = con.prepareStatement(sql_contact);
+
+            //change this or smthing
+            if (bNew) {
+                //stmt.setInt(1, new_id);
+                stmt.setString(1, title);
+                stmt.setString(2, publisher);
+                stmt.setString(3, releaseDate);
+
+                stmt_game.executeUpdate();
+                //System.out.println(rowsAffected + " row(s) affected");
+                int rowsAffected = stmt.executeUpdate();
+
+                //for adding
+                ResultSet customer_rs = con.prepareStatement("SELECT * FROM CUSTOMER").executeQuery();
+                ResultSet cc_rs = con.prepareStatement("SELECT * FROM CONTACT").executeQuery();
+
+                String id_add = "";
+                String contact_id_add = "";
+
+                while (customer_rs.next()) {
+                    id_add = customer_rs.getString("customer_id");
+                }
+                while (cc_rs.next()) {
+                    contact_id_add = cc_rs.getString("contact_id");
+                }
+
+                PreparedStatement ccstmt = con.prepareStatement("INSERT INTO customercontact(contact_id, customer_id) "
+                        + "VALUES (?, ?)");
+
+                ccstmt.setInt(1, Integer.parseInt(contact_id_add));
+                ccstmt.setInt(2, Integer.parseInt(id_add));
+
+                ccstmt.executeUpdate();
+
+                //System.out.println(rowsAffected + " row(s) affected");
+                ccstmt.close();
+                stmt_game.close();
+                stmt.close();
+
+            } else {
+
+                stmt.setString(1, title);
+                stmt.setString(2, publisher);
+                stmt.setString(3, releaseDate);
+
+                int rowsAffected = stmt.executeUpdate();
+                stmt_game.executeUpdate();
+                //System.out.println(rowsAffected + " row(s) affected");
+
+                stmt_game.close();
                 stmt.close(); // Close the statement
             }
 
@@ -504,15 +637,15 @@ class connectionFunctionGame extends javax.swing.JFrame {
 
     public void newGame(Connection con, JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        new frmGame(con, null, null, null, null, null, null, null, null, true, model).setVisible(true);
+        new frmGame(con, null, null, null, null, false, model).setVisible(true);
     }
     
     public void newGameDatabase(Connection con, JTable table, boolean addExistGameDatabase, String e_id) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         if (addExistGameDatabase) {
-            new frmGameDatabase(con).setVisible(true);
+            new frmGame(con, null, null, null, null, false, model).setVisible(true);
         } else {
-            new frmGameDatabase(con).setVisible(true);
+            new frmGame(con, null, null, null, null, false, model).setVisible(true);
         }
     }
     
@@ -531,7 +664,7 @@ class connectionFunctionGame extends javax.swing.JFrame {
     }
     public void newPrice(Connection con, JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        new frmPrice(con, null, null, null, null, null, null, null, null, true, model).setVisible(true);
+        new frmPrice(con, null, null, null, true, model).setVisible(true);
     }
     public void newPublisher(Connection con, JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();

@@ -17,12 +17,14 @@ public class frmSuperForm extends javax.swing.JFrame {
     
     protected Connection con;
     protected connectionFunction cnf;
-    protected DefaultTableModel table;
+    protected DefaultTableModel table; 
+    protected connectionFunctionGame cng;
     
     
     public frmSuperForm(Connection sqlpass) {
         this.con = sqlpass;
-        this.cnf = new connectionFunction();
+        this.cnf = new connectionFunction(); 
+        this.cng = new connectionFunctionGame();
         boolean check = cnf.isDbConnected(con);
         
         System.out.println(check);
@@ -40,6 +42,10 @@ public class frmSuperForm extends javax.swing.JFrame {
     {
         this.cnf = cnf;
     }
+    public void setCng(connectionFunctionGame cng)
+    {
+        this.cng = cng;
+    }
     
     public void setDefaultTable(DefaultTableModel table)
     {
@@ -54,6 +60,10 @@ public class frmSuperForm extends javax.swing.JFrame {
     public connectionFunction getCnf()
     {
         return cnf;
+    }
+    public connectionFunctionGame getCng()
+    {
+        return cng;
     }
     
     public DefaultTableModel getDefaultTable()
