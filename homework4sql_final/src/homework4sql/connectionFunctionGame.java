@@ -19,7 +19,7 @@ import javax.swing.table.TableModel;
  *
  * @author fufu
  */
-class connectionFunction extends javax.swing.JFrame {
+class connectionFunctionGame extends javax.swing.JFrame {
 
     // Start of Connect
     boolean createConnection(String username, String password) {
@@ -504,42 +504,42 @@ class connectionFunction extends javax.swing.JFrame {
 
     public void newGame(Connection con, JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        new frmGame(con, null, null, null, null, null, null, null, true, model).setVisible(true);
+        new frmGame(con, null, null, null, null, null, null, null, null, true, model).setVisible(true);
     }
     
     public void newGameDatabase(Connection con, JTable table, boolean addExistGameDatabase, String e_id) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         if (addExistGameDatabase) {
-            new frmGameDatabase(con, null, null, true, addExistGameDatabase, e_id, model).setVisible(true);
+            new frmGameDatabase(con).setVisible(true);
         } else {
-            new frmGameDatabase(con, null, null, true, addExistGameDatabase, e_id, model).setVisible(true);
+            new frmGameDatabase(con).setVisible(true);
         }
     }
     
     public void newGame_genre(Connection con, JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        new frmGame_genre(con, null, null, null, null, null, null, null, true, model).setVisible(true);
+        new frmGame_genre(con, null, null, null, null, null, null, null, null, true, model).setVisible(true);
     }
     
     public void newGame_platform(Connection con, JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        new frmGame_platform(con, null, null, null, null, null, null, null, true, model).setVisible(true);
+        new frmGame_platform(con, null, null, null, null, null, null, null, null, true, model).setVisible(true);
     }
     public void newGame_population(Connection con, JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        new frmGame_population(con, null, null, null, null, null, null, null, true, model).setVisible(true);
+        new frmGame_population(con, null, null, null, null, null, null, null, null, true, model).setVisible(true);
     }
     public void newPrice(Connection con, JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        new frmPrice(con, null, null, null, null, null, null, null, true, model).setVisible(true);
+        new frmPrice(con, null, null, null, null, null, null, null, null, true, model).setVisible(true);
     }
     public void newPublisher(Connection con, JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        new frmPublisher(con, null, null, null, null, null, null, null, true, model).setVisible(true);
+        new frmPublisher(con, null, null, null, null, null, null, null, null, true, model).setVisible(true);
     }
     public void newSales(Connection con, JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        new frmSales(con, null, null, null, null, null, null, null, true, model).setVisible(true);
+        new frmSales(con, null, null, null, null, null, null, null, null, true, model).setVisible(true);
     }
 
     public void searchCustomer(Connection con, JTable table, String selected, String searchValue, boolean chkBox, boolean bContact) {
