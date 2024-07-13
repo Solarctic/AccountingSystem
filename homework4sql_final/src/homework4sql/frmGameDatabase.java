@@ -122,6 +122,7 @@ public class frmGameDatabase extends frmSuperList {
 
     private void btnAddGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGameActionPerformed
         // TODO add your handling code here:
+        getCnf().newGame(getCon(), getTable());
     }//GEN-LAST:event_btnAddGameActionPerformed
 
     /**
