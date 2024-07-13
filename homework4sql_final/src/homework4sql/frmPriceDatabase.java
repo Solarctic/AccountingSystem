@@ -23,7 +23,7 @@ public class frmPriceDatabase extends frmSuperList {
         super(sqlpass);
         initComponents();
 
-        DefaultTableModel tableModel = (DefaultTableModel) tblGameDatabase.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) tblPriceDatabase.getModel();
         
         try {
             Statement stmt = con.createStatement();
@@ -58,14 +58,14 @@ public class frmPriceDatabase extends frmSuperList {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblGameDatabase = new javax.swing.JTable();
+        tblPriceDatabase = new javax.swing.JTable();
         btnAddGame = new javax.swing.JButton();
         btnUpdateGame = new javax.swing.JButton();
         btnDeleteGame = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tblGameDatabase.setModel(new javax.swing.table.DefaultTableModel(
+        tblPriceDatabase.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -73,7 +73,7 @@ public class frmPriceDatabase extends frmSuperList {
                 "game_id", "region", "price"
             }
         ));
-        jScrollPane1.setViewportView(tblGameDatabase);
+        jScrollPane1.setViewportView(tblPriceDatabase);
 
         btnAddGame.setText("Add Game");
         btnAddGame.addActionListener(new java.awt.event.ActionListener() {
@@ -138,12 +138,12 @@ public class frmPriceDatabase extends frmSuperList {
 
     private void btnUpdateGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateGameActionPerformed
         // TODO add your handling code here:
-        getCng().editGame(getCon(), getTable());
+        getCng().editPrice(getCon(), getTable());
     }//GEN-LAST:event_btnUpdateGameActionPerformed
 
     private void btnDeleteGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteGameActionPerformed
         // TODO add your handling code here:
-        if(getCng().deleteGame(getCon(), getTable()))
+        if(getCng().deletePrice(getCon(), getTable()))
         {
             refreshTable();
         }
@@ -189,6 +189,6 @@ public class frmPriceDatabase extends frmSuperList {
     private javax.swing.JButton btnDeleteGame;
     private javax.swing.JButton btnUpdateGame;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblGameDatabase;
+    private javax.swing.JTable tblPriceDatabase;
     // End of variables declaration//GEN-END:variables
 }

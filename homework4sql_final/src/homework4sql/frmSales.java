@@ -93,7 +93,7 @@ public class frmSales extends frmSuperForm{
         txtPlayer_count = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        txtGame_id = new javax.swing.JTextField();
+        txtSales_id = new javax.swing.JTextField();
         lblGameID = new javax.swing.JLabel();
         lblRegion = new javax.swing.JLabel();
         txtRegion = new javax.swing.JTextField();
@@ -124,10 +124,10 @@ public class frmSales extends frmSuperForm{
             }
         });
 
-        txtGame_id.setEditable(false);
-        txtGame_id.addActionListener(new java.awt.event.ActionListener() {
+        txtSales_id.setEditable(false);
+        txtSales_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtGame_idActionPerformed(evt);
+                txtSales_idActionPerformed(evt);
             }
         });
 
@@ -147,9 +147,9 @@ public class frmSales extends frmSuperForm{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(75, 75, 75)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblRegion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(26, 26, 26)
                         .addComponent(txtRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -157,12 +157,12 @@ public class frmSales extends frmSuperForm{
                         .addGap(57, 57, 57)
                         .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblGameID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPlayer_count, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPlayer_count, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblGameID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtGame_id, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSales_id, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPlayer_count, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
@@ -171,7 +171,7 @@ public class frmSales extends frmSuperForm{
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtGame_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSales_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblGameID))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -201,13 +201,11 @@ public class frmSales extends frmSuperForm{
     }//GEN-LAST:event_txtPlayer_countActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
-//        if(getCnf().saveCustomer(con, checkNew, txtCustomer_id, txtCustomer_first_name, txtCustomer_last_name, txtCustomer_city, txtCustomer_address, txtCustomer_country, 
-//                cmbBoxContact, editContact_id ))
-//        {
-//            refreshTable();
-//            this.dispose();
-//        }
+        if (getCng().saveSales(con, checkNew, txtPublisher_name, )) //Connection sqlpass, String id, String game, String publisher_id, String release_date, boolean bNew, DefaultTableModel tbl
+        {
+            refreshTable();
+            this.dispose();
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
 
@@ -218,9 +216,9 @@ public class frmSales extends frmSuperForm{
         this.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
 
-    private void txtGame_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGame_idActionPerformed
+    private void txtSales_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSales_idActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtGame_idActionPerformed
+    }//GEN-LAST:event_txtSales_idActionPerformed
 
     private void txtRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegionActionPerformed
         // TODO add your handling code here:
@@ -282,9 +280,9 @@ public class frmSales extends frmSuperForm{
     private javax.swing.JLabel lblGameID;
     private javax.swing.JLabel lblPlayer_count;
     private javax.swing.JLabel lblRegion;
-    private javax.swing.JTextField txtGame_id;
     private javax.swing.JTextField txtPlayer_count;
     private javax.swing.JTextField txtRegion;
+    private javax.swing.JTextField txtSales_id;
     // End of variables declaration//GEN-END:variables
 
 }

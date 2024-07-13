@@ -23,7 +23,7 @@ public class frmPublisherDatabase extends frmSuperList {
         super(sqlpass);
         initComponents();
 
-        DefaultTableModel tableModel = (DefaultTableModel) tblGameDatabase.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) tblPublisherDatabase.getModel();
         
         try {
             Statement stmt = con.createStatement();
@@ -58,41 +58,41 @@ public class frmPublisherDatabase extends frmSuperList {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblGameDatabase = new javax.swing.JTable();
-        btnAddGame = new javax.swing.JButton();
-        btnUpdateGame = new javax.swing.JButton();
-        btnDeleteGame = new javax.swing.JButton();
+        tblPublisherDatabase = new javax.swing.JTable();
+        btnAddPublisher = new javax.swing.JButton();
+        btnUpdatePublisher = new javax.swing.JButton();
+        btnDeletePublisher = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tblGameDatabase.setModel(new javax.swing.table.DefaultTableModel(
+        tblPublisherDatabase.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "game_id", "region", "price"
+                "publisher_id", "name"
             }
         ));
-        jScrollPane1.setViewportView(tblGameDatabase);
+        jScrollPane1.setViewportView(tblPublisherDatabase);
 
-        btnAddGame.setText("Add Game");
-        btnAddGame.addActionListener(new java.awt.event.ActionListener() {
+        btnAddPublisher.setText("Add Publisher");
+        btnAddPublisher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddGameActionPerformed(evt);
+                btnAddPublisherActionPerformed(evt);
             }
         });
 
-        btnUpdateGame.setText("Update Game");
-        btnUpdateGame.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdatePublisher.setText("Update Publisher");
+        btnUpdatePublisher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateGameActionPerformed(evt);
+                btnUpdatePublisherActionPerformed(evt);
             }
         });
 
-        btnDeleteGame.setText("Delete Game");
-        btnDeleteGame.addActionListener(new java.awt.event.ActionListener() {
+        btnDeletePublisher.setText("Delete Publisher");
+        btnDeletePublisher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteGameActionPerformed(evt);
+                btnDeletePublisherActionPerformed(evt);
             }
         });
 
@@ -105,10 +105,10 @@ public class frmPublisherDatabase extends frmSuperList {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnUpdateGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAddGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDeleteGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                    .addComponent(btnUpdatePublisher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAddPublisher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeletePublisher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,35 +119,35 @@ public class frmPublisherDatabase extends frmSuperList {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addComponent(btnAddGame)
+                        .addComponent(btnAddPublisher)
                         .addGap(18, 18, 18)
-                        .addComponent(btnUpdateGame)
+                        .addComponent(btnUpdatePublisher)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDeleteGame)))
+                        .addComponent(btnDeletePublisher)))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGameActionPerformed
+    private void btnAddPublisherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPublisherActionPerformed
         // TODO add your handling code here:
-        getCng().newPrice(getCon(), getTable()); //.newGame(getCon(), getTable());
+        getCng().newPublisher(getCon(), getTable()); //.newGame(getCon(), getTable());
       //getCnf().newContact(getCon(), getTable(), false, null);
-    }//GEN-LAST:event_btnAddGameActionPerformed
+    }//GEN-LAST:event_btnAddPublisherActionPerformed
 
-    private void btnUpdateGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateGameActionPerformed
+    private void btnUpdatePublisherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdatePublisherActionPerformed
         // TODO add your handling code here:
-        getCng().editGame(getCon(), getTable());
-    }//GEN-LAST:event_btnUpdateGameActionPerformed
+        getCng().editPublisher(getCon(), getTable());
+    }//GEN-LAST:event_btnUpdatePublisherActionPerformed
 
-    private void btnDeleteGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteGameActionPerformed
+    private void btnDeletePublisherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePublisherActionPerformed
         // TODO add your handling code here:
-        if(getCng().deleteGame(getCon(), getTable()))
+        if(getCng().deletePublisher(getCon(), getTable()))
         {
             refreshTable();
         }
-    }//GEN-LAST:event_btnDeleteGameActionPerformed
+    }//GEN-LAST:event_btnDeletePublisherActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,10 +187,10 @@ public class frmPublisherDatabase extends frmSuperList {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddGame;
-    private javax.swing.JButton btnDeleteGame;
-    private javax.swing.JButton btnUpdateGame;
+    private javax.swing.JButton btnAddPublisher;
+    private javax.swing.JButton btnDeletePublisher;
+    private javax.swing.JButton btnUpdatePublisher;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblGameDatabase;
+    private javax.swing.JTable tblPublisherDatabase;
     // End of variables declaration//GEN-END:variables
 }

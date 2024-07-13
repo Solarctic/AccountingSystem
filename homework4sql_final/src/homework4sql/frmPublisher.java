@@ -23,13 +23,12 @@ public class frmPublisher extends frmSuperForm{
      * Creates new form frmPublisher
      */
     boolean checkNew;
-    String editContact_id;
+    String editPublisher_id;
 
-    public frmPublisher(Connection sqlpass, String id, String firstname, String lastname,
-        String address, String city, String country, String contactType, String contact_id, boolean bNew, DefaultTableModel tbl) {
+    public frmPublisher(Connection sqlpass, String id, String name, boolean bNew, DefaultTableModel tbl) {
         super(sqlpass);
         initComponents();
-        boolean check = cnf.isDbConnected(con);
+        boolean check = cng.isDbConnected(con);
         //System.out.println(check);
 
         if (!check) {
@@ -56,7 +55,7 @@ public class frmPublisher extends frmSuperForm{
 
     @Override
     protected void loadData() {
-        getCnf().getDefaultContact(getCon(), getDefaultTable()); // Load contact data into tblCostomers
+        getCng().getDefaultPublisher(getCon(), getDefaultTable()); // Load contact data into tblCostomers
     }
 
     @Override
@@ -64,7 +63,7 @@ public class frmPublisher extends frmSuperForm{
     {
         DefaultTableModel model = (DefaultTableModel) getDefaultTable();
         model.setRowCount(0);
-        getCnf().getDefaultCustomer(getCon(), getDefaultTable());
+        getCng().getDefaultPublisherDatabase(getCon(), getDefaultTable());
     }
     //see frmMain for details
 //    public boolean isDbConnected(Connection con) {
@@ -182,13 +181,11 @@ public class frmPublisher extends frmSuperForm{
     }//GEN-LAST:event_txtPublisher_nameActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
-//        if(getCnf().saveCustomer(con, checkNew, txtCustomer_id, txtCustomer_first_name, txtCustomer_last_name, txtCustomer_city, txtCustomer_address, txtCustomer_country, 
-//                cmbBoxContact, editContact_id ))
-//        {
-//            refreshTable();
-//            this.dispose();
-//        }
+        if (getCng().savePublisher(con, checkNew, txtPublisher_name)) //Connection sqlpass, String id, String game, String publisher_id, String release_date, boolean bNew, DefaultTableModel tbl
+        {
+            refreshTable();
+            this.dispose();
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
 

@@ -30,9 +30,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="lblRegion" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="lblRegion" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="txtRegion" min="-2" pref="279" max="-2" attributes="0"/>
                   </Group>
@@ -42,13 +42,13 @@
                       <Component id="btnExit" min="-2" pref="165" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="lblGameID" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
-                          <Component id="lblPlayer_count" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblPlayer_count" max="32767" attributes="0"/>
+                          <Component id="lblGameID" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="txtGame_id" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtSales_id" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtPlayer_count" min="-2" pref="279" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -62,7 +62,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtGame_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSales_id" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblGameID" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -112,12 +112,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtGame_id">
+    <Component class="javax.swing.JTextField" name="txtSales_id">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtGame_idActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSales_idActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblGameID">
