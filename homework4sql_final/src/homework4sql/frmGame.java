@@ -34,32 +34,28 @@ public class frmGame extends frmSuperForm{
         boolean check = cnf.isDbConnected(con);
         //System.out.println(check);
 
-//        if (!check) {
-//            JOptionPane.showMessageDialog(null, "SQL Connection Failed or Interrupted.");
-//            return;
-//        }
-//        
-//        setDefaultTable(tbl);
-//        initComponents();
-//
-//        checkNew = bNew;
-//
-//        if (!bNew) {
-//            txtCustomer_id.setText(id);
-//        }
-//
-//        txtCustomer_first_name.setText(firstname);
-//        txtCustomer_last_name.setText(lastname);
-//        txtCustomer_address.setText(address);
-//        txtCustomer_city.setText(city);
-//        txtCustomer_country.setText(country);
-//        cmbBoxContact.setSelectedItem(contactType);
-//        editContact_id = contact_id;
+        if (!check) {
+            JOptionPane.showMessageDialog(null, "SQL Connection Failed or Interrupted.");
+            return;
+        }
+        
+        setDefaultTable(tbl);
+        initComponents();
+
+        checkNew = bNew;
+
+        if (!bNew) {
+            txtGame_id.setText(id);
+        }
+
+        txtTitle.setText(game);
+        txtPublisher_id.setText(publisher_id);
+        txtRelease_date.setText(release_date);
     }
 
     @Override
     protected void loadData() {
-        getCng().getDefaultGame(getCon(), getDefaultTable()); // This function is for SQL, change it
+        getCng().getDefaultGameDatabase(getCon(), getDefaultTable()); // This function is for SQL, change it
     }
 
     @Override
@@ -158,7 +154,7 @@ public class frmGame extends frmSuperForm{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -175,9 +171,9 @@ public class frmGame extends frmSuperForm{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtPublisher_id, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtRelease_date, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtGame_id, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                            .addComponent(txtTitle))))
-                .addContainerGap(81, Short.MAX_VALUE))
+                            .addComponent(txtGame_id, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lblPublisher_id, lblRelease_date, lblTitle});
@@ -234,7 +230,7 @@ public class frmGame extends frmSuperForm{
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
-        if(getCng().saveGame(con, checkNew, txtTitle, txtPublisher_id, txtRelease_date))
+        if(getCng().saveGame(con, checkNew, txtGame_id, txtTitle, txtPublisher_id, txtRelease_date))
             //Connection sqlpass, String id, String game, String publisher_id, String release_date, boolean bNew, DefaultTableModel tbl
         {
             refreshTable();

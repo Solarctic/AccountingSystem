@@ -8,6 +8,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.*;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 
 /**
  *
@@ -16,14 +24,16 @@ import javax.swing.JTable;
 public class frmSuperList extends javax.swing.JFrame {
     protected Connection con;
     protected connectionFunction cnf;
-    protected connectionFunctionGame cng;
+    protected connectionGameDB cng;
     protected JTable table;
 
     public frmSuperList(Connection sqlpass) {
         this.con = sqlpass;
         this.cnf = new connectionFunction();
-        this.cng = new connectionFunctionGame();
+        this.cng = new connectionGameDB();
         this.table = new JTable();
+        
+        
         //initComponents(); // Assuming this method initializes UI components
         boolean check = cnf.isDbConnected(con);
         boolean checkg = cng.isDbConnected(con);
@@ -44,7 +54,7 @@ public class frmSuperList extends javax.swing.JFrame {
         this.cnf = cnf;
     }
     
-    public void setCng(connectionFunctionGame cng)
+    public void setCng(connectionGameDB cng)
     {
         this.cng = cng;
     }
@@ -64,7 +74,7 @@ public class frmSuperList extends javax.swing.JFrame {
         return cnf;
     }
     
-    public connectionFunctionGame getCng()
+    public connectionGameDB getCng()
     {
         return cng;
     }

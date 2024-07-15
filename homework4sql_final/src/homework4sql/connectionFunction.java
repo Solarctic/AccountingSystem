@@ -27,7 +27,7 @@ class connectionFunction extends javax.swing.JFrame {
         try {
             //Class.forName("com.mysql.cj.jdbc.Drive");
             //change localhost schema to import table * (for admin and root users)
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lab_3", username, password);
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", username, password);
             JOptionPane.showMessageDialog(null, "SQL Connected Successfully");
             //System.out.println("Connection successful");
             new frmMain(con).setVisible(true);
@@ -117,25 +117,25 @@ class connectionFunction extends javax.swing.JFrame {
         return false;
     }
 
-    public void editContact(Connection con, javax.swing.JTable tblContacts) {
-        // TODO add your handling code here:
-        TableModel tableModel = tblContacts.getModel();
-        DefaultTableModel model = (DefaultTableModel) tblContacts.getModel();
-        if (tableModel.getRowCount() != -1) {
-            int row = tblContacts.getSelectedRow();
-            if (row <= -1) {
-                JOptionPane.showMessageDialog(null, "Cannot Edit Row: Row Unselected");
-                return;
-            }
-            //System.out.println("row ID: " + row);
-
-            String id = tableModel.getValueAt(row, 0).toString();
-            String contact_type = tableModel.getValueAt(row, 1).toString();
-            new frmContact(con, id, contact_type, false, false, null, model).setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Invalid Table Value");
-        }
-    }
+//    public void editContact(Connection con, javax.swing.JTable tblContacts) {
+//        // TODO add your handling code here:
+//        TableModel tableModel = tblContacts.getModel();
+//        DefaultTableModel model = (DefaultTableModel) tblContacts.getModel();
+//        if (tableModel.getRowCount() != -1) {
+//            int row = tblContacts.getSelectedRow();
+//            if (row <= -1) {
+//                JOptionPane.showMessageDialog(null, "Cannot Edit Row: Row Unselected");
+//                return;
+//            }
+//            //System.out.println("row ID: " + row);
+//
+//            String id = tableModel.getValueAt(row, 0).toString();
+//            String contact_type = tableModel.getValueAt(row, 1).toString();
+//            new frmContact(con, id, contact_type, false, false, null, model).setVisible(true);
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Invalid Table Value");
+//        }
+//    }
 
     // End of Contact List
     // Start of Customer List
@@ -173,38 +173,38 @@ class connectionFunction extends javax.swing.JFrame {
         }
     }
 
-    public void editCustomer(Connection con, javax.swing.JTable tblCustomers) {
-        // TODO add your handling code here:
-        //fetch data
+//    public void editCustomer(Connection con, javax.swing.JTable tblCustomers) {
+//        // TODO add your handling code here:
+//        //fetch data
+////        TableModel tableModel = tblCustomers.getModel();
+////        JTable jTableModel = new JTable(tblCustomers);
+//
 //        TableModel tableModel = tblCustomers.getModel();
-//        JTable jTableModel = new JTable(tblCustomers);
-
-        TableModel tableModel = tblCustomers.getModel();
-        DefaultTableModel model = (DefaultTableModel) tblCustomers.getModel();
-
-        if (tableModel.getRowCount() != -1) {
-            int row = tblCustomers.getSelectedRow();
-            if (row <= -1) {
-                JOptionPane.showMessageDialog(null, "Cannot Edit Row: Row Unselected");
-                return;
-            }
-            //System.out.println("row ID: " + row);
-
-            String id = tableModel.getValueAt(row, 0).toString();
-            String first_Name = tableModel.getValueAt(row, 1).toString();
-            String last_Name = tableModel.getValueAt(row, 2).toString();
-            String address = tableModel.getValueAt(row, 3).toString();
-            String city = tableModel.getValueAt(row, 4).toString();
-            String country = tableModel.getValueAt(row, 5).toString();
-            String cmbBox = tableModel.getValueAt(row, 6).toString();
-            String contact_id = tableModel.getValueAt(row, 7).toString();
-
-            //String query = "UPDATE Books SET availability = ? WHERE author = ? AND bookname = ?";
-            new frmCustomers(con, id, first_Name, last_Name, address, city, country, cmbBox, contact_id, false, model).setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Invalid Table Value");
-        }
-    }
+//        DefaultTableModel model = (DefaultTableModel) tblCustomers.getModel();
+//
+//        if (tableModel.getRowCount() != -1) {
+//            int row = tblCustomers.getSelectedRow();
+//            if (row <= -1) {
+//                JOptionPane.showMessageDialog(null, "Cannot Edit Row: Row Unselected");
+//                return;
+//            }
+//            //System.out.println("row ID: " + row);
+//
+//            String id = tableModel.getValueAt(row, 0).toString();
+//            String first_Name = tableModel.getValueAt(row, 1).toString();
+//            String last_Name = tableModel.getValueAt(row, 2).toString();
+//            String address = tableModel.getValueAt(row, 3).toString();
+//            String city = tableModel.getValueAt(row, 4).toString();
+//            String country = tableModel.getValueAt(row, 5).toString();
+//            String cmbBox = tableModel.getValueAt(row, 6).toString();
+//            String contact_id = tableModel.getValueAt(row, 7).toString();
+//
+//            //String query = "UPDATE Books SET availability = ? WHERE author = ? AND bookname = ?";
+//            new frmCustomers(con, id, first_Name, last_Name, address, city, country, cmbBox, contact_id, false, model).setVisible(true);
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Invalid Table Value");
+//        }
+//    }
 
     public boolean deleteCustomer(Connection con, javax.swing.JTable tblCustomers) {
         // TODO add your handling code here:
@@ -502,19 +502,19 @@ class connectionFunction extends javax.swing.JFrame {
         return true;
     }
 
-    public void newContact(Connection con, JTable table, boolean addExistContact, String e_id) {
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        if (addExistContact) {
-            new frmContact(con, null, null, true, addExistContact, e_id, model).setVisible(true);
-        } else {
-            new frmContact(con, null, null, true, addExistContact, e_id, model).setVisible(true);
-        }
-    }
+//    public void newContact(Connection con, JTable table, boolean addExistContact, String e_id) {
+//        DefaultTableModel model = (DefaultTableModel) table.getModel();
+//        if (addExistContact) {
+//            new frmContact(con, null, null, true, addExistContact, e_id, model).setVisible(true);
+//        } else {
+//            new frmContact(con, null, null, true, addExistContact, e_id, model).setVisible(true);
+//        }
+//    }
 
-    public void newCustomer(Connection con, JTable table) {
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        new frmCustomers(con, null, null, null, null, null, null, "Phone", null, true, model).setVisible(true);
-    }
+//    public void newCustomer(Connection con, JTable table) {
+//        DefaultTableModel model = (DefaultTableModel) table.getModel();
+//        new frmCustomers(con, null, null, null, null, null, null, "Phone", null, true, model).setVisible(true);
+//    }
 
     public void searchCustomer(Connection con, JTable table, String selected, String searchValue, boolean chkBox, boolean bContact) {
         //System.out.println(searchValue);
