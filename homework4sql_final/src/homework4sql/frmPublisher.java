@@ -4,80 +4,55 @@
  */
 package homework4sql;
 
-import java.sql.*;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author SOL
  */
-public class frmPublisher extends frmSuperForm{
+public class frmPublisher extends frmSuperForm {
 
     /**
      * Creates new form frmPublisher
      */
     boolean checkNew;
-    String editContact_id;
 
-    public frmPublisher(Connection sqlpass, String id, String firstname, String lastname,
-        String address, String city, String country, String contactType, String contact_id, boolean bNew, DefaultTableModel tbl) {
+    public frmPublisher(Connection sqlpass, String id, String contactType, boolean bNew, DefaultTableModel tbl) {
         super(sqlpass);
         initComponents();
-        boolean check = cnf.isDbConnected(con);
-        //System.out.println(check);
+        setDefaultTable(tbl);
+        
+        boolean check = cng.isDbConnected(con);
+        System.out.println(check);
 
         if (!check) {
             JOptionPane.showMessageDialog(null, "SQL Connection Failed or Interrupted.");
             return;
         }
-        
-//        setDefaultTable(tbl);
-//
-//        checkNew = bNew;
-//
-//        if (!bNew) {
-//            txtCustomer_id.setText(id);
-//        }
-//
-//        txtCustomer_first_name.setText(firstname);
-//        txtCustomer_last_name.setText(lastname);
-//        txtCustomer_address.setText(address);
-//        txtCustomer_city.setText(city);
-//        txtCustomer_country.setText(country);
-//        cmbBoxContact.setSelectedItem(contactType);
-//        editContact_id = contact_id;
+
+        checkNew = bNew;
+
+        if (!checkNew) {
+            txtpub_id.setText(id);
+        }
+
+        txtpub_id.setText(id);
+
     }
 
     @Override
     protected void loadData() {
-        getCnf().getDefaultContact(getCon(), getDefaultTable()); // Load contact data into tblCostomers
+        getCng().getDefaultPublisher(getCon(), getDefaultTable()); // Load contact data into tblCostomers
     }
 
     @Override
-    protected void refreshTable()
-    {
+    protected void refreshTable() {
         DefaultTableModel model = (DefaultTableModel) getDefaultTable();
         model.setRowCount(0);
-        getCnf().getDefaultCustomer(getCon(), getDefaultTable());
+        getCng().getDefaultPublisher(getCon(), getDefaultTable());
     }
-    //see frmMain for details
-//    public boolean isDbConnected(Connection con) {
-//        try {
-//            return con != null && !con.isClosed();
-//        } catch (SQLException ignored) {
-//            System.out.println("sql failed to connect");
-//        }
-//        return false;
-//    }
-
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,22 +63,23 @@ public class frmPublisher extends frmSuperForm{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblPublisher_name = new javax.swing.JLabel();
-        txtPublisher_name = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtpub_id = new javax.swing.JTextField();
+        txtpub_Name = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        txtPublisher_id = new javax.swing.JTextField();
-        lblPublisher_id = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Database - Customer Table");
-        setResizable(false);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblPublisher_name.setText("Name:");
+        jLabel1.setText("Publisher ID");
 
-        txtPublisher_name.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("Publisher Name");
+
+        txtpub_id.setEditable(false);
+        txtpub_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPublisher_nameActionPerformed(evt);
+                txtpub_idActionPerformed(evt);
             }
         });
 
@@ -121,92 +97,75 @@ public class frmPublisher extends frmSuperForm{
             }
         });
 
-        txtPublisher_id.setEditable(false);
-        txtPublisher_id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPublisher_idActionPerformed(evt);
-            }
-        });
-
-        lblPublisher_id.setText("Publisher ID:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
-                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPublisher_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblPublisher_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtPublisher_id, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPublisher_name, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(84, Short.MAX_VALUE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtpub_id, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtpub_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(btnSave)
+                        .addGap(45, 45, 45)
+                        .addComponent(btnExit)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPublisher_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPublisher_id))
-                .addGap(32, 32, 32)
+                    .addComponent(jLabel1)
+                    .addComponent(txtpub_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPublisher_name)
-                    .addComponent(txtPublisher_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                    .addComponent(jLabel2)
+                    .addComponent(txtpub_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
                     .addComponent(btnExit))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnExit, btnSave});
-
-        getAccessibleContext().setAccessibleName("Database - Customer List");
-
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPublisher_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPublisher_nameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPublisher_nameActionPerformed
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
-//        if(getCnf().saveCustomer(con, checkNew, txtCustomer_id, txtCustomer_first_name, txtCustomer_last_name, txtCustomer_city, txtCustomer_address, txtCustomer_country, 
-//                cmbBoxContact, editContact_id ))
-//        {
-//            refreshTable();
-//            this.dispose();
-//        }
-    }//GEN-LAST:event_btnSaveActionPerformed
-
+    private void txtpub_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpub_idActionPerformed
+        // TODO add your handling code here:  
+       if(getCng().savePublisher(con, checkNew, txtpub_id, txtpub_Name ))
+        {
+            refreshTable();
+            this.dispose();
+        }
+    }//GEN-LAST:event_txtpub_idActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
-        //exit the tab without saving data
         refreshTable();
         this.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
 
-    private void txtPublisher_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPublisher_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPublisher_idActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+    if(getCng().savePublisher(con, checkNew, txtpub_id, txtpub_Name))
+        {
+            refreshTable();
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
-     * @param args the command line arguments *
+     * @param args the command line arguments
      */
-    //code from internet modified to check connection just in case it doesnt pass
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -215,7 +174,7 @@ public class frmPublisher extends frmSuperForm{
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -230,13 +189,6 @@ public class frmPublisher extends frmSuperForm{
             java.util.logging.Logger.getLogger(frmPublisher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -248,10 +200,9 @@ public class frmPublisher extends frmSuperForm{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnSave;
-    private javax.swing.JLabel lblPublisher_id;
-    private javax.swing.JLabel lblPublisher_name;
-    private javax.swing.JTextField txtPublisher_id;
-    private javax.swing.JTextField txtPublisher_name;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField txtpub_Name;
+    private javax.swing.JTextField txtpub_id;
     // End of variables declaration//GEN-END:variables
-
 }

@@ -9,6 +9,14 @@ import javax.swing.JOptionPane;
 import java.sql.Connection;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.*;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author SOL
@@ -17,12 +25,14 @@ public class frmSuperForm extends javax.swing.JFrame {
     
     protected Connection con;
     protected connectionFunction cnf;
-    protected DefaultTableModel table;
+    protected DefaultTableModel table; 
+    protected connectionGameDB cng;
     
     
     public frmSuperForm(Connection sqlpass) {
         this.con = sqlpass;
-        this.cnf = new connectionFunction();
+        this.cnf = new connectionFunction(); 
+        this.cng = new connectionGameDB();
         boolean check = cnf.isDbConnected(con);
         
         System.out.println(check);
@@ -40,6 +50,10 @@ public class frmSuperForm extends javax.swing.JFrame {
     {
         this.cnf = cnf;
     }
+    public void setCng(connectionGameDB cng)
+    {
+        this.cng = cng;
+    }
     
     public void setDefaultTable(DefaultTableModel table)
     {
@@ -54,6 +68,10 @@ public class frmSuperForm extends javax.swing.JFrame {
     public connectionFunction getCnf()
     {
         return cnf;
+    }
+    public connectionGameDB getCng()
+    {
+        return cng;
     }
     
     public DefaultTableModel getDefaultTable()

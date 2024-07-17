@@ -8,6 +8,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.*;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 
 /**
  *
@@ -16,16 +24,21 @@ import javax.swing.JTable;
 public class frmSuperList extends javax.swing.JFrame {
     protected Connection con;
     protected connectionFunction cnf;
+    protected connectionGameDB cng;
     protected JTable table;
 
     public frmSuperList(Connection sqlpass) {
         this.con = sqlpass;
         this.cnf = new connectionFunction();
-
+        this.cng = new connectionGameDB();
+        this.table = new JTable();
+        
+        
         //initComponents(); // Assuming this method initializes UI components
         boolean check = cnf.isDbConnected(con);
-        System.out.println(check);
-        if (!check) {
+        boolean checkg = cng.isDbConnected(con);
+        System.out.println(checkg);
+        if (!checkg) {
             JOptionPane.showMessageDialog(null, "SQL Connection Failed or Interrupted.");
             return;
         }
@@ -41,6 +54,11 @@ public class frmSuperList extends javax.swing.JFrame {
         this.cnf = cnf;
     }
     
+    public void setCng(connectionGameDB cng)
+    {
+        this.cng = cng;
+    }
+    
     public void setTable(JTable table)
     {
         this.table = table;
@@ -54,6 +72,11 @@ public class frmSuperList extends javax.swing.JFrame {
     public connectionFunction getCnf()
     {
         return cnf;
+    }
+    
+    public connectionGameDB getCng()
+    {
+        return cng;
     }
     
     public JTable getTable()

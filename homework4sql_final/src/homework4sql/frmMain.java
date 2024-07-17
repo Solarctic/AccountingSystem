@@ -21,6 +21,7 @@ public class frmMain extends javax.swing.JFrame {
     
     Connection con = null;
     connectionFunction cnf = new connectionFunction();
+    connectionGameDB cng = new connectionGameDB();
 
     public frmMain(Connection sqlcon) {
 
@@ -40,23 +41,23 @@ public class frmMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnCustomers = new javax.swing.JButton();
-        btnContacts = new javax.swing.JButton();
+        btnGamedatabase = new javax.swing.JButton();
+        btnPublisher = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Database Menu");
 
-        btnCustomers.setText("Customers");
-        btnCustomers.addActionListener(new java.awt.event.ActionListener() {
+        btnGamedatabase.setText("Game Database");
+        btnGamedatabase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCustomersActionPerformed(evt);
+                btnGamedatabaseActionPerformed(evt);
             }
         });
 
-        btnContacts.setText("Contacts");
-        btnContacts.addActionListener(new java.awt.event.ActionListener() {
+        btnPublisher.setText("Publisher Database");
+        btnPublisher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContactsActionPerformed(evt);
+                btnPublisherActionPerformed(evt);
             }
         });
 
@@ -65,45 +66,47 @@ public class frmMain extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnContacts, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addGap(119, 119, 119)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPublisher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGamedatabase, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(btnCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnContacts, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addComponent(btnGamedatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(btnPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersActionPerformed
+    private void btnGamedatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGamedatabaseActionPerformed
         // TODO add your handling code here:
-        boolean check = cnf.isDbConnected(con);
+        boolean check = cng.isDbConnected(con);
+        
         if (!check) {
             JOptionPane.showMessageDialog(null, "SQL Connection Failed or Interrupted.");
             return;
         }
-        new frmCustomerList(con).setVisible(true);
-    }//GEN-LAST:event_btnCustomersActionPerformed
+        new frmGameDatabase(con).setVisible(true);
+    }//GEN-LAST:event_btnGamedatabaseActionPerformed
 
-    private void btnContactsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContactsActionPerformed
+    private void btnPublisherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublisherActionPerformed
         // TODO add your handling code here:
-        boolean check = cnf.isDbConnected(con);
+        
+        boolean check = cng.isDbConnected(con);
         if (!check) {
             JOptionPane.showMessageDialog(null, "SQL Connection Failed or Interrupted.");
             return;
         }
-        new frmContactList(con).setVisible(true);
-    }//GEN-LAST:event_btnContactsActionPerformed
+        new frmPublisherList(con).setVisible(true);
+    }//GEN-LAST:event_btnPublisherActionPerformed
 
 //    //method i found that i modified to check connection just in case the object doesnt pass
 //    public boolean isDbConnected(Connection con) {
@@ -152,7 +155,7 @@ public class frmMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnContacts;
-    private javax.swing.JButton btnCustomers;
+    private javax.swing.JButton btnGamedatabase;
+    private javax.swing.JButton btnPublisher;
     // End of variables declaration//GEN-END:variables
 }

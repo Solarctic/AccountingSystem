@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -83,8 +84,18 @@ public class frmGameDatabase extends frmSuperList {
         });
 
         btnUpdateGame.setText("Update Game");
+        btnUpdateGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateGameActionPerformed(evt);
+            }
+        });
 
         btnDeleteGame.setText("Delete Game");
+        btnDeleteGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteGameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,7 +109,7 @@ public class frmGameDatabase extends frmSuperList {
                     .addComponent(btnUpdateGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAddGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDeleteGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(222, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,8 +133,22 @@ public class frmGameDatabase extends frmSuperList {
 
     private void btnAddGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGameActionPerformed
         // TODO add your handling code here:
-        getCnf().newGame(getCon(), getTable());
+        getCng().newGame(getCon(), getTable()); //.newGame(getCon(), getTable());
+      //getCnf().newContact(getCon(), getTable(), false, null);
     }//GEN-LAST:event_btnAddGameActionPerformed
+
+    private void btnUpdateGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateGameActionPerformed
+        // TODO add your handling code here:
+        getCng().editGame(getCon(), getTable());
+    }//GEN-LAST:event_btnUpdateGameActionPerformed
+
+    private void btnDeleteGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteGameActionPerformed
+        // TODO add your handling code here:
+        if(getCng().deleteGame(getCon(), getTable()))
+        {
+            refreshTable();
+        }
+    }//GEN-LAST:event_btnDeleteGameActionPerformed
 
     /**
      * @param args the command line arguments
